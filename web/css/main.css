@@ -1,3 +1,23 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('font/inter.ttf');
+}
+
 body {
-    background-color: #222450;
+    background-color: #0a1321;
+    color: white;
+    font-family: Inter;
+}
+
+.centerdiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-width: 1px;
+    border-radius: 20px;
+    padding: 20px;
 }
