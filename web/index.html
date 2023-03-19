@@ -8,7 +8,34 @@
 </head>
 <body>
     <div class="centerdiv">
-        <img src="/images/demoimg.png" alt="demo image">
+        <a href="/result.png">
+            <img src="/result.png" alt="Generated image" id="generatedImage">
+        </a>
+        <form action="/generate" method="POST">
+            <input type="text" class="text-input" placeholder="Positive prompt" name="positivePrompt"><br>
+            <input type="text" class="text-input" placeholder="Negative prompt" name="negativePrompt"><br>
+            <input type="number" class="text-input" placeholder="Number of steps" name="numSteps"><br>
+
+            <label for="resolution">Resolution: </label>
+            <select id="resolution" name="resolution" class="text-input" style="width: auto;">
+                <option value="256">256x256</option>
+                <option value="512">512x512</option>
+                <option value="1024">1024x1024</option>
+                <option value="2048">2048x2048</option>
+            </select><br>
+
+            <input type="submit" value="Generate" class="button">
+        </form>
     </div>
+
 </body>
+<script>
+    const img = document.getElementById('generatedImage');
+
+    function reloadImage() {
+        img.src = '/result.png?' + new Date().getTime();
+    }
+
+    setInterval(reloadImage, 500);
+</script>
 </html>
