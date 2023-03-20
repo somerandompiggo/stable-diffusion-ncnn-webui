@@ -67,7 +67,6 @@ func SDGenerate(width int, height int, speed int, stepcount int, seed int, posit
 	err = os.Chdir("../src")
 	check(err)
 
-	fmt.Println(os.Getwd())
 	setShownImageTo(genFileName(stepcount, seed, height, width))
 }
 
@@ -79,6 +78,11 @@ func getRoot(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func main() {
+	if _, err := os.Stat("../web/images"); os.IsNotExist(err) == false {
+		err := os.Mkdir("../web/images", 0644)
+		check(err)
+	}
+
 	http.HandleFunc("/style.css", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "../web/css/main.css")
 	})

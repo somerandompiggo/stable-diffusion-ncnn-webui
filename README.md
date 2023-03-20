@@ -1,6 +1,7 @@
 # Stable Diffusion NCNN Web UI
 
-A web UI for [Stable Diffusion NCNN](https://github.com/EdVince/Stable-Diffusion-NCNN) written in Go.
+A web UI for [Stable Diffusion NCNN](https://github.com/EdVince/Stable-Diffusion-NCNN) written in Go.  
+![Screenshot](screenshot.png)  
 
 ## Usage (Linux)
 
