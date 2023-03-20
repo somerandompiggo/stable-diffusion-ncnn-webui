@@ -2,9 +2,6 @@
 
 A web UI for [Stable Diffusion NCNN](https://github.com/EdVince/Stable-Diffusion-NCNN) written in Go.
 
-
-## Important notice: Under heavy development, not usable
-
 ## Usage (Linux)
 
 Compile this repository with `go build` and run the binary.
@@ -25,7 +22,9 @@ cmake ..
 make
 ```
 For the make command you can use -j to specify how many cores/threads you want to use during compilation. This can hugely speed up the build process.
-Move the `build` folder to the root of this repository.
+Move the `build` folder to the root of this repository, and open the web UI again at `localhost:8080`.
+
+Type in a prompt, and wait about 15 seconds for a 256x256 image (on my machine).
 
 ### Getting the models
 The author of the original Stable Diffusion NCNN has provided a link to a model, which as of writing this is [here](https://drive.google.com/drive/folders/1myB4uIQ2K5okl51XDbmYhetLF9rUyLZS?usp=sharing).
