@@ -78,8 +78,8 @@ func getRoot(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func main() {
-	if _, err := os.Stat("../web/images"); os.IsNotExist(err) == false {
-		err := os.Mkdir("../web/images", 0644)
+	if _, err := os.Stat("../web/images"); os.IsNotExist(err) {
+		err := os.Mkdir("../web/images", 0777)
 		check(err)
 	}
 
