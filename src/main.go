@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
 	"os"
 )
@@ -15,10 +16,20 @@ func getRoot(w http.ResponseWriter, r *http.Request) {
 }
 
 func getHistoryPage(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "../web/history.html")
+	tmpl, err := template.ParseFiles("../web/history.html")
+	check(err)
+
+	if len(historyfile) == 0 {
+		err = tmpl.Execute(w, "You haven't generated any images yet!")
+	} else {
+		err = tmpl.Execute(w, getHistoryHTML())
+	}
+	fmt.Println(getHistoryHTML())
+	check(err)
 }
 
 func main() {
+	loadHistoryFile()
 	if _, err := os.Stat("../web/images"); os.IsNotExist(err) {
 		err := os.Mkdir("../web/images", 0777)
 		check(err)

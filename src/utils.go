@@ -21,6 +21,10 @@ func check(err error) {
 	}
 }
 
+func removeFromSlice(slice []ImageStruct, s int) []ImageStruct {
+	return append(slice[:s], slice[s+1:]...)
+}
+
 func genFileName(stepcount int, seed int, height int, width int) string {
 	return "result_" + fmt.Sprint(stepcount) + "_" + fmt.Sprint(seed) + "_" + fmt.Sprint(height) + "x" + fmt.Sprint(width) + ".png"
 }
@@ -48,6 +52,18 @@ func generate(w http.ResponseWriter, r *http.Request) {
 	promptP := reqparams.Get("positivePrompt")
 	promptN := reqparams.Get("negativePrompt")
 	seed := randseed.Intn(100000)
+
+	addEntry(ImageStruct{
+		Time:      time.Now().UnixNano(),
+		Image:     genFileName(stepcount, seed, height, width),
+		Width:     width,
+		Height:    height,
+		Speed:     1,
+		Stepcount: stepcount,
+		Seed:      seed,
+		Positive:  promptP,
+		Negative:  promptN,
+	})
 
 	go SDGenerate(width, height, 1, stepcount, seed, promptP, promptN)
 	http.Redirect(w, r, "/", http.StatusFound)
