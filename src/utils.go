@@ -55,7 +55,7 @@ func generate(w http.ResponseWriter, r *http.Request) {
 
 	addEntry(ImageStruct{
 		Time:      time.Now().UnixNano(),
-		Image:     genFileName(stepcount, seed, height, width),
+		Image:     "/sd/" + genFileName(stepcount, seed, height, width),
 		Width:     width,
 		Height:    height,
 		Speed:     1,

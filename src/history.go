@@ -68,6 +68,7 @@ func getHistoryHTML() string {
 		err = tmpl.Execute(&buf, historyfile[i])
 		check(err)
 		result += buf.String()
+		buf.Reset()
 	}
 	return result
 }

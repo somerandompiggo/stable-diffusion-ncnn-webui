@@ -34,6 +34,9 @@ func main() {
 		check(err)
 	}
 
+	sdfs := http.FileServer(http.Dir("../build"))
+	http.Handle("/sd/", http.StripPrefix("/sd/", sdfs))
+
 	http.HandleFunc("/style.css", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "../web/css/main.css")
 	})
