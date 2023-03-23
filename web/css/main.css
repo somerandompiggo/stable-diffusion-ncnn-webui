@@ -22,6 +22,14 @@ body {
     padding: 20px;
 }
 
+.horizontalcenterdiv {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    text-align: center;
+    padding: 20px;
+}
+
 .borderbox {
     text-align: center;
     border-style: solid;
@@ -29,7 +37,7 @@ body {
     border-width: 1px;
     border-radius: 20px;
     padding: 20px;
-    margin: 10px;
+    margin: 20px;
 }
 
 #generatedImage {

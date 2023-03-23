@@ -22,9 +22,8 @@ func getHistoryPage(w http.ResponseWriter, r *http.Request) {
 	if len(historyfile) == 0 {
 		err = tmpl.Execute(w, "You haven't generated any images yet!")
 	} else {
-		err = tmpl.Execute(w, getHistoryHTML())
+		err = tmpl.Execute(w, template.HTML(getHistoryHTML()))
 	}
-	fmt.Println(getHistoryHTML())
 	check(err)
 }
 

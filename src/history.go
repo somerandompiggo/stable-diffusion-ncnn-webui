@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"os"
 )
@@ -28,7 +29,9 @@ func loadHistoryFile() {
 		check(err)
 	}
 	err = json.Unmarshal(f, &historyfile)
-	check(err)
+	if err != nil {
+		fmt.Println("Failed to decode JSON in history file. If this is the first time you are launching the server, this is normal. If not, please check your permissions.")
+	}
 }
 
 func updateHistory() {
@@ -62,7 +65,8 @@ func getHistoryHTML() string {
 	var buf bytes.Buffer
 	var result string
 	for i := 0; i < len(historyfile); i++ {
-		err = tmpl.ExecuteTemplate(&buf, "layout", historyfile[i])
+		err = tmpl.Execute(&buf, historyfile[i])
+		check(err)
 		result += buf.String()
 	}
 	return result
